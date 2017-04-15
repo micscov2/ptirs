@@ -4,7 +4,7 @@ from mongoengine import Document
 me.connect("test")
 
 class Ptir(Document):
-	ptir_id = me.IntField(required=True)
+	ptir_id = me.IntField(required=True, primary_key=True)
 	description = me.StringField(required=True)
 	created_on = me.StringField()
 	modified_on = me.StringField()
@@ -17,7 +17,7 @@ class Ptir(Document):
 	release = me.StringField()
 
 class User(Document):
-	name = me.StringField(required=True)
+	name = me.StringField(required=True, primary_key=True)
 	password = me.StringField(required=True)
 	email = me.StringField()
 	role = me.StringField()
