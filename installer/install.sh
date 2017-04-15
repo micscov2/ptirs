@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Set environment variables
+# This flag will enable debug information for flask
+export FLASK_DEBUG=1
+
 # Installing system dependencies
 # TODO: Install mongodb
 sudo apt-get update >> debug.log
