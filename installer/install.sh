@@ -13,8 +13,8 @@ sudo apt-get install -y mongodb-org
 # TODO: Check if MongoDB is running
 
 # Installing system dependencies
-sudo apt-get update >> ../log/debug.log
-sudo apt-get install python-pip >> ../log/debug.log
+sudo apt-get update 
+sudo apt-get install python-pip
 
 # Install python dependencies
-sudo pip install -r requirements.txt >> ../log/debug.log
+sudo pip install -r requirements.txt 
