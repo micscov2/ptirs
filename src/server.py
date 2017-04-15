@@ -2,8 +2,12 @@ from flask import Flask
 from flask import url_for
 from orm_file import Ptir, User
 from utils import get_response_object
+import logging
 import json
 
+logging.basicConfig(filename="server.log", level=logging.DEBUG)
+
+logger = logging.getLogger(__name__)
 app = Flask(__name__)
 
 @app.route("/getPtirs")
