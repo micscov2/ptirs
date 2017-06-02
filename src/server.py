@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import url_for
+from flask import url_for, request
 from orm_file import Ptir, User
 from utils import get_response_object
 import logging
@@ -30,4 +30,19 @@ def get_users():
     		   )
 	return response
 
+@app.route("/addUser", methods=['POST'])
+def add_user():
+	body = json.loads(request.data)
+	user = User(body["name"], body["password"])
+	user.save()
+
+	response = app.response_class(
+				response=json.dumps("{'status': 'ok'}"),
+				status=200,
+				mimetype="application/json"
+		   )
+
+	return response
+
+print("Server listening on port 7421")
 app.run(host="0.0.0.0", port=7421)
