@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import url_for, request
+from flask import url_for, request, send_from_directory
 from orm_file import Ptir, User
 from utils import get_response_object
 import logging
@@ -18,6 +18,7 @@ def get_ptirs():
         			status=200,
         			mimetype='application/json'
     		   )
+	print(response)
 	return response
 
 @app.route("/getUsers")
@@ -43,6 +44,11 @@ def add_user():
 		   )
 
 	return response
+
+@app.route("/<path:path>")
+def home_index(path):
+    return send_from_directory("static", path)
+
 
 print("Server listening on port 7421")
 app.run(host="0.0.0.0", port=7421)
