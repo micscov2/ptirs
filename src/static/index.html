@@ -31,7 +31,33 @@
                 <td> {{ptir.description}} </td>
             </tr>
         </tbody>
+        <tfoot class="full-width">
+            <tr>
+                <th></th>
+                <th colspan="4">
+                    <div ng-click="showModel()"> Add User </div>
+                </th>
+            </tr>
+        </tfoot>
     </table>
-    <div>
+    <div class="modal">
+        <i class="close icon"></i>
+        <div class="header"> </div>
+            <div>
+                <form>
+                    <table class="ui basic table">
+                        <tr> <td>Reporter</td> <td> <input type="text" ng-model="ptir.reporter" placeholder="Reporter" required /> </td> </tr>
+                        <tr> <td>Assignee</td> <td> <input type="text" ng-model="ptir.assignee" placeholder="Assignee" required /> </td> </tr>
+                        <tr> <td>Severity</td> <td> <input type="text" ng-model="ptir.severity" placeholder="Severity" required /> </td> </tr>
+                        <tr> <td>Status</td> <td> <input type="text" ng-model="ptir.status" placeholder="Status" /> </td> </tr>
+                        <tr> <td>Description</td> <td> <input type="text" ng-model="ptir.description" placeholder="Description" required /> </td> </tr>
+                    </table>
+                </form>
+            </div>
+        <div class="actions">
+            <div ng-click="save()"> Save <i class="checkmark icon"></i> </div>
+        </div>
+    </div>
+    </div>
 </body>
 </html>

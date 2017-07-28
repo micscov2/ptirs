@@ -2,6 +2,7 @@ from flask import Flask
 from flask import url_for, request, send_from_directory
 from orm_file import Ptir, User
 from utils import get_response_object
+import random
 import logging
 import json
 
@@ -30,6 +31,26 @@ def get_users():
         			mimetype='application/json'
     		   )
 	return response
+
+@app.route("/addPtir", methods=['POST'])
+def add_ptir():
+    body = json.loads(request.data)
+    ptir = Ptir(
+                    ptir_id=random.randint(1, 10000), 
+                    description=body["description"],
+                    reporter=body["reporter"],
+                    assignee=body["assignee"],
+                    status=body["status"],
+                    severity=body["severity"]
+               )
+    ptir.save()
+    response = app.response_class(
+                response=json.dumps("{'status': 'ok'}"),
+                status=200,
+                mimetype="application/json"
+           )
+    return response
+
 
 @app.route("/addUser", methods=['POST'])
 def add_user():
