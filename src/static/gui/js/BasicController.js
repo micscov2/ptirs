@@ -1,12 +1,13 @@
 angularApp.controller("BasicController", function BasicController($scope, $http, $rootScope) {
     $rootScope.ptirs = [];
     $scope.ptirData = {}
+    $scope.ip_addr = "192.168.0.101"
 
     $('.modal').hide();
 
     $http({
         method: "GET",
-        url: "http://192.168.0.106:7421/getPtirs"
+        url: "http://" + $scope.ip_addr + ":7421/getPtirs"
     }).then(function success(response) {
         $rootScope.ptirs = [];
         for (var i = 0; i < response.data.length; i++) {
@@ -38,7 +39,7 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
         $scope.ptirData['description'] = $scope.ptir.description
         $http({ 
                 method: "POST",
-                url: "http://192.168.0.106:7421/addPtir",
+                url: "http://" + $scope.ip_addr + ":7421/addPtir",
                 data: JSON.stringify($scope.ptirData)
         }).then(function success(response) {
             alert("success " + response.toString());

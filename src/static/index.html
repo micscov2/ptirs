@@ -1,44 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- scripts -->
     <script src='gui/js/jquery.min.js'></script>   
     <script src='gui/js//angular.min.js' /></script>
-    <script src='gui/js/pzk_module.js' /></script>
-    <script src='gui/js/BasicController.js' /></script>
+    <script src='gui/js/bootstrap.min.js' /></script>
+    <script src='gui/js/pzk_module.js'></script>
+    <script src='gui/js/BasicController.js'></script>
+
+    <!-- csses -->
+    <link rel="stylesheet" href='gui/css/bootstrap.min.css' />
 </head>
 
 <body ng-app="angularApp">
 	<h1>PTIRs: A simple task management tool by Pzk</h1>
     <div ng-controller="BasicController">
-    <table border="1">
-        <thead>
-            <tr>
-                <th>PtirId</th>
-                <th>Reporter</th>
-                <th>Assignee</th>
-                <th>Severity</th>
-                <th>Status</th>
-                <th>Description</th>
+    <table class="table-striped">
+            <tr class="row">
+                <th class="col-sm-1">PtirId</th>
+                <th class="col-sm-2">Reporter</th>
+                <th class="col-sm-2">Assignee</th>
+                <th class="col-sm-1">Severity</th>
+                <th class="col-sm-1">Status</th>
+                <th class="col-sm-2">Description</th>
             </tr>
-        </thead>
-        <tbody>
             <tr ng-repeat="ptir in ptirs">
-                <td> {{ptir.ptirId}} </td>
-                <td> {{ptir.reporter}} </td>
-                <td> {{ptir.assignee}} </td>
-                <td> {{ptir.severity}} </td>
-                <td> {{ptir.status}} </td>
-                <td> {{ptir.description}} </td>
+                <td class="col-sm-1"> {{ptir.ptirId}} </td>
+                <td class="col-sm-2"> {{ptir.reporter}} </td>
+                <td class="col-sm-2"> {{ptir.assignee}} </td>
+                <td class="col-sm-1"> {{ptir.severity}} </td>
+                <td class="col-sm-1"> {{ptir.status}} </td>
+                <td class="col-sm-2"> {{ptir.description}} </td>
             </tr>
-        </tbody>
-        <tfoot class="full-width">
             <tr>
                 <th></th>
                 <th colspan="4">
                     <div ng-click="showModel()"> Add User </div>
                 </th>
             </tr>
-        </tfoot>
     </table>
     <div class="modal">
         <i class="close icon"></i>
