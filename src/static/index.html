@@ -10,53 +10,59 @@
 
     <!-- csses -->
     <link rel="stylesheet" href='gui/css/bootstrap.min.css' />
+
+    <!-- Configurations and meta -->
+    <!-- This line adds support for mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 
 <body ng-app="angularApp">
 	<h1>PTIRs: A simple task management tool by Pzk</h1>
     <div ng-controller="BasicController">
-    <table class="table-striped">
-            <tr class="row">
-                <th class="col-sm-1">PtirId</th>
-                <th class="col-sm-2">Reporter</th>
-                <th class="col-sm-2">Assignee</th>
-                <th class="col-sm-1">Severity</th>
-                <th class="col-sm-1">Status</th>
-                <th class="col-sm-2">Description</th>
-            </tr>
-            <tr ng-repeat="ptir in ptirs">
-                <td class="col-sm-1"> {{ptir.ptirId}} </td>
-                <td class="col-sm-2"> {{ptir.reporter}} </td>
-                <td class="col-sm-2"> {{ptir.assignee}} </td>
-                <td class="col-sm-1"> {{ptir.severity}} </td>
-                <td class="col-sm-1"> {{ptir.status}} </td>
-                <td class="col-sm-2"> {{ptir.description}} </td>
-            </tr>
-            <tr>
-                <th></th>
-                <th colspan="4">
-                    <div ng-click="showModel()"> Add User </div>
-                </th>
-            </tr>
-    </table>
-    <div class="modal">
-        <i class="close icon"></i>
-        <div class="header"> </div>
-            <div>
-                <form>
-                    <table class="ui basic table">
-                        <tr> <td>Reporter</td> <td> <input type="text" ng-model="ptir.reporter" placeholder="Reporter" required /> </td> </tr>
-                        <tr> <td>Assignee</td> <td> <input type="text" ng-model="ptir.assignee" placeholder="Assignee" required /> </td> </tr>
-                        <tr> <td>Severity</td> <td> <input type="text" ng-model="ptir.severity" placeholder="Severity" required /> </td> </tr>
-                        <tr> <td>Status</td> <td> <input type="text" ng-model="ptir.status" placeholder="Status" /> </td> </tr>
-                        <tr> <td>Description</td> <td> <input type="text" ng-model="ptir.description" placeholder="Description" required /> </td> </tr>
-                    </table>
-                </form>
-            </div>
-        <div class="actions">
-            <div ng-click="save()"> Save <i class="checkmark icon"></i> </div>
+        <div>
+            <table class="table-striped lst">
+                    <tr class="row">
+                        <th class="col-sm-1">PtirId</th>
+                        <th class="col-sm-2">Reporter</th>
+                        <th class="col-sm-2">Assignee</th>
+                        <th class="col-sm-2">Severity</th>
+                        <th class="col-sm-2">Status</th>
+                        <th class="col-sm-2">Description</th>
+                    </tr>
+                    <tr ng-repeat="ptir in ptirs" class="row">
+                        <td class="col-sm-1"> {{ptir.ptirId}} </td>
+                        <td class="col-sm-2"> {{ptir.reporter}} </td>
+                        <td class="col-sm-2"> {{ptir.assignee}} </td>
+                        <td class="col-sm-2"> {{ptir.severity}} </td>
+                        <td class="col-sm-2"> {{ptir.status}} </td>
+                        <td class="col-sm-2"> {{ptir.description}} </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th colspan="4">
+                            <div ng-click="showModel()"> Add PTIR </div>
+                        </th>
+                    </tr>
+            </table>
         </div>
-    </div>
+        <div class="modala">
+            <!-- <i class="close icon"></i> -->
+            <!-- <div class="header"> </div> -->
+                <!-- <div> -->
+                    <form>
+                        <table> <!-- class="ui basic table" -->
+                            <tr> <td>Reporter</td> <td> <input type="text" ng-model="ptir.reporter" placeholder="Reporter" required /> </td> </tr>
+                            <tr> <td>Assignee</td> <td> <input type="text" ng-model="ptir.assignee" placeholder="Assignee" required /> </td> </tr>
+                            <tr> <td>Severity</td> <td> <input type="text" ng-model="ptir.severity" placeholder="Severity" required /> </td> </tr>
+                            <tr> <td>Status</td> <td> <input type="text" ng-model="ptir.status" placeholder="Status" /> </td> </tr>
+                            <tr> <td>Description</td> <td> <input type="text" ng-model="ptir.description" placeholder="Description" required /> </td> </tr>
+                        </table>
+                    </form>
+                <!-- </div> -->
+            <div class="actions">
+                <div ng-click="save()"> Save <i class="checkmark icon"></i> </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

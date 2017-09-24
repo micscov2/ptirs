@@ -1,9 +1,10 @@
 angularApp.controller("BasicController", function BasicController($scope, $http, $rootScope) {
     $rootScope.ptirs = [];
     $scope.ptirData = {}
-    $scope.ip_addr = "192.168.0.101"
+    $scope.ip_addr = "localhost"
 
-    $('.modal').hide();
+    $('.modala').hide();
+    $('.lst').show();
 
     $http({
         method: "GET",
@@ -26,8 +27,9 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
     });
 
     $scope.showModel = function () {
-        alert('called')
-        $('.modal').show();
+        alert('called');
+        $('.modala').show();
+        $('.lst').hide();
     }
 
     $scope.save = function() {
@@ -47,7 +49,8 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
         }, function failure(response) {
             alert('error in post ptir');
         });
-        $('.modal').hide();
+        $('.modala').hide();
+        $('.lst').show();
     }
 });
 
