@@ -19,31 +19,28 @@
 <body ng-app="angularApp">
 	<h1>PTIRs: A simple task management tool by Pzk</h1>
     <div ng-controller="BasicController">
-        <div>
+        <div class="lst">
             <table class="table-striped lst">
                     <tr class="row">
                         <th class="col-sm-1">PtirId</th>
                         <th class="col-sm-2">Reporter</th>
                         <th class="col-sm-2">Assignee</th>
-                        <th class="col-sm-2">Severity</th>
+                        <th class="col-sm-1">Severity</th>
                         <th class="col-sm-2">Status</th>
-                        <th class="col-sm-2">Description</th>
+                        <th class="col-sm-3">Description</th>
                     </tr>
                     <tr ng-repeat="ptir in ptirs" class="row">
                         <td class="col-sm-1"> {{ptir.ptirId}} </td>
                         <td class="col-sm-2"> {{ptir.reporter}} </td>
                         <td class="col-sm-2"> {{ptir.assignee}} </td>
-                        <td class="col-sm-2"> {{ptir.severity}} </td>
+                        <td class="col-sm-1"> {{ptir.severity}} </td>
                         <td class="col-sm-2"> {{ptir.status}} </td>
-                        <td class="col-sm-2"> {{ptir.description}} </td>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <th colspan="4">
-                            <div ng-click="showModel()"> Add PTIR </div>
-                        </th>
+                        <td class="col-sm-3"> {{ptir.description}} </td>
                     </tr>
             </table>
+            <div ng-click="showModel()"> Add PTIR </div>
+            <!-- <div ng-click="showModel('change')"> Update PTIR </div> -->
+            <!-- <input type="text" placeholder="PTIR Id" ng-model="currPtirId" /> -->
         </div>
         <div class="modala">
             <!-- <i class="close icon"></i> -->
@@ -61,6 +58,9 @@
                 <!-- </div> -->
             <div class="actions">
                 <div ng-click="save()"> Save <i class="checkmark icon"></i> </div>
+                <div ng-click="save('change')"> Load Data <i class="checkmark icon"></i> </div>
+                <input type="text" placeholder="PTIR ID" ng-model="currPtirId" />
+                <div ng-click="update()"> Update <i class="checkmark icon"></i> </div>
             </div>
         </div>
     </div>

@@ -32,18 +32,72 @@ def get_users():
     		   )
 	return response
 
-@app.route("/addPtir", methods=['POST'])
-def add_ptir():
+@app.route("/updatePtir", methods=['POST'])
+def update_ptir():
     body = json.loads(request.data)
+    print("update : {}".format(body))
+    if body["assignee"] in [None, ""] or body["reporter"] in [None, ""]:
+        response = app.response_class(
+                    response=json.dumps("{'status': 'error: assignee/reporter is empty'}"),
+                    status=400,
+                    mimetype="application/json"
+               )
+        return response
+
     ptir = Ptir(
-                    ptir_id=random.randint(1, 10000), 
+                    ptir_id=int(body["_id"]),
                     description=body["description"],
                     reporter=body["reporter"],
                     assignee=body["assignee"],
                     status=body["status"],
                     severity=body["severity"]
                )
-    ptir.save()
+    try:
+        ptir.save()
+    except Exception:
+        response = app.response_class(
+                    response=json.dumps("{'status': 'error: validation error'}"),
+                    status=400,
+                    mimetype="application/json"
+               )
+        return response
+        
+    response = app.response_class(
+                response=json.dumps("{'status': 'ok'}"),
+                status=200,
+                mimetype="application/json"
+           )
+    return response
+
+@app.route("/addPtir", methods=['POST'])
+def add_ptir():
+    body = json.loads(request.data)
+    if body["assignee"] in [None, ""] or body["reporter"] in [None, ""]:
+        response = app.response_class(
+                    response=json.dumps("{'status': 'error: assignee/reporter is empty'}"),
+                    status=400,
+                    mimetype="application/json"
+               )
+        return response
+
+    ptir = Ptir(
+                    ptir_id=random.randint(1, 100000), 
+                    description=body["description"],
+                    reporter=body["reporter"],
+                    assignee=body["assignee"],
+                    status=body["status"],
+                    severity=body["severity"]
+               )
+    try:
+        ptir.save()
+    except Exception:
+        response = app.response_class(
+                    response=json.dumps("{'status': 'error: validation error'}"),
+                    status=400,
+                    mimetype="application/json"
+               )
+        return response
+        
     response = app.response_class(
                 response=json.dumps("{'status': 'ok'}"),
                 status=200,

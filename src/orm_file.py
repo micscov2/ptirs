@@ -12,8 +12,8 @@ class Ptir(Document):
 	modified_by = me.StringField()
 	reporter = me.StringField(required=True)
 	assignee = me.StringField(required=True)
-	status = me.StringField(required=True)
-	severity = me.StringField(required=True)
+	status = me.StringField(required=True, choices=['OPEN', 'NEW', 'IN PROGRESS', 'PENDING INFO', 'RESOLVED', 'CLOSED'])
+	severity = me.StringField(required=True, choices=['LOW', 'MEDIUM', 'HIGH', 'BLOCKER'])
 	release = me.StringField()
 
 class User(Document):

@@ -27,13 +27,53 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
     });
 
     $scope.showModel = function () {
-        alert('called');
+        // alert('called');
         $('.modala').show();
         $('.lst').hide();
     }
 
-    $scope.save = function() {
-        alert('save');
+    $scope.update = function() {
+        $scope.ptirData['_id'] = $scope.currPtirId
+        $scope.ptirData['reporter'] = $scope.ptir.reporter
+        $scope.ptirData['assignee'] = $scope.ptir.assignee
+        $scope.ptirData['severity'] = $scope.ptir.severity
+        $scope.ptirData['status'] = $scope.ptir.status
+        $scope.ptirData['description'] = $scope.ptir.description
+
+        $scope.currPtirId = 0
+
+        $http({ 
+                method: "POST",
+                url: "http://" + $scope.ip_addr + ":7421/updatePtir",
+                data: JSON.stringify($scope.ptirData)
+        }).then(function success(response) {
+            // alert("success " + response.toString());
+            $rootScope.ptirs.push($scope.ptirData)
+        }, function failure(response) {
+            alert('error in post ptir');
+        });
+        $('.modala').hide();
+        $('.lst').show();
+    };
+
+    $scope.save = function(change) {
+        if (change) {
+            currPtirId = $scope.currPtirId;
+            // alert(currPtirId);
+            for (var i = 0; i < $scope.ptirs.length; i++) {
+                if (currPtirId == $scope.ptirs[i].ptirId) {
+
+                    $scope.ptir.reporter = $scope.ptirs[i].reporter;
+                    $scope.ptir.assignee = $scope.ptirs[i].assignee;
+                    $scope.ptir.severity = $scope.ptirs[i].severity;
+                    $scope.ptir.status = $scope.ptirs[i].status;
+                    $scope.ptir.description = $scope.ptirs[i].description;
+                    break;
+                }
+            }
+            return;
+        } 
+        // alert('save');
         $scope.ptirData['reporter'] = $scope.ptir.reporter
         $scope.ptirData['assignee'] = $scope.ptir.assignee
         $scope.ptirData['severity'] = $scope.ptir.severity
@@ -44,8 +84,8 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
                 url: "http://" + $scope.ip_addr + ":7421/addPtir",
                 data: JSON.stringify($scope.ptirData)
         }).then(function success(response) {
-            alert("success " + response.toString());
-            $rootScope.push($scope.ptirData)
+            // alert("success " + response.toString());
+            $rootScope.ptirs.push($scope.ptirData)
         }, function failure(response) {
             alert('error in post ptir');
         });
