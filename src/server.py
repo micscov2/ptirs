@@ -11,26 +11,31 @@ logging.basicConfig(filename="server.log", level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 app = Flask(__name__)
 
-@app.route("/getPtirs")
-def get_ptirs():
-	data = get_response_object(Ptir.objects)
-	response = app.response_class(
-        			response=json.dumps(data),
-        			status=200,
-        			mimetype='application/json'
-    		   )
-	print(response)
-	return response
+@app.route("/getPtirs/<filter>")
+def get_ptirs(filter):
+    print(filter)
+    if filter in ['OPEN', 'IN PROGRESS']:
+        data = get_response_object(Ptir.objects(status=filter))
+    else:
+        data = get_response_object(Ptir.objects)
+
+    response = app.response_class(
+                    response=json.dumps(data),
+                    status=200,
+                    mimetype='application/json'
+               )
+    print(response)
+    return response
 
 @app.route("/getUsers")
 def get_users():
-	data = get_response_object(User.objects)
-	response = app.response_class(
-        			response=json.dumps(data),
-        			status=200,
-        			mimetype='application/json'
-    		   )
-	return response
+    data = get_response_object(User.objects)
+    response = app.response_class(
+                    response=json.dumps(data),
+                    status=200,
+                    mimetype='application/json'
+               )
+    return response
 
 @app.route("/updatePtir", methods=['POST'])
 def update_ptir():
@@ -108,17 +113,17 @@ def add_ptir():
 
 @app.route("/addUser", methods=['POST'])
 def add_user():
-	body = json.loads(request.data)
-	user = User(body["name"], body["password"])
-	user.save()
+    body = json.loads(request.data)
+    user = User(body["name"], body["password"])
+    user.save()
 
-	response = app.response_class(
-				response=json.dumps("{'status': 'ok'}"),
-				status=200,
-				mimetype="application/json"
-		   )
+    response = app.response_class(
+                response=json.dumps("{'status': 'ok'}"),
+                status=200,
+                mimetype="application/json"
+           )
 
-	return response
+    return response
 
 @app.route("/<path:path>")
 def home_index(path):

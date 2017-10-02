@@ -6,9 +6,46 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
     $('.modala').hide();
     $('.lst').show();
 
+
+    $scope.reload = function() {
+        // debug;
+        filter = "";
+        if ($scope.open) {
+            filter = 'OPEN'
+        } else if ($scope.inProgress) {
+            filter = 'IN PROGRESS'
+        }
+
+        if (! filter) {
+            filter = 'all';
+        }
+
+        $http({
+            method: "GET",
+            url: "http://" + $scope.ip_addr + ":7421/getPtirs/" + filter
+        }).then(function success(response) {
+            $rootScope.ptirs = [];
+            for (var i = 0; i < response.data.length; i++) {
+                var item = {};
+                item["ptirId"] = response.data[i]["_id"];
+                item["reporter"] = response.data[i]["reporter"];
+                item["assignee"] = response.data[i]["assignee"];
+                item["severity"] = response.data[i]["severity"];
+                item["status"] = response.data[i]["status"];
+                item["description"] = response.data[i]["description"];
+
+                $rootScope.ptirs.push(item);
+            }
+        }, function failure(response) {
+            alert("Error getting response from /getptirs " + response.toString() + " " + response);
+        });
+
+
+    };
+
     $http({
         method: "GET",
-        url: "http://" + $scope.ip_addr + ":7421/getPtirs"
+        url: "http://" + $scope.ip_addr + ":7421/getPtirs/all"
     }).then(function success(response) {
         $rootScope.ptirs = [];
         for (var i = 0; i < response.data.length; i++) {
