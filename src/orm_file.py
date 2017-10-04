@@ -22,3 +22,6 @@ class User(Document):
 	email = me.StringField()
 	role = me.StringField()
 	ptirs_assigned = me.StringField()
+
+class Secret(Document):
+    secr = me.StringField()

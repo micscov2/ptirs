@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import url_for, request, send_from_directory
-from orm_file import Ptir, User
+from orm_file import Ptir, User, Secret
 from utils import get_response_object
 import random
 import logging
@@ -11,9 +11,15 @@ logging.basicConfig(filename="server.log", level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 app = Flask(__name__)
 
-@app.route("/getPtirs/<filter>")
-def get_ptirs(filter):
+@app.route("/getPtirs/<filter>/<keyphrase>")
+def get_ptirs(filter, keyphrase):
     print(filter)
+    if (keyphrase != Secret.objects[0].secr):
+        return app.response_class(
+                    response=json.dumps(dict()),
+                    status=200,
+                    mimetype='application/json'
+               )            
     if filter in ['OPEN', 'IN PROGRESS']:
         data = get_response_object(Ptir.objects(status=filter))
     else:

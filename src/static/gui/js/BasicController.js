@@ -20,9 +20,14 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
             filter = 'all';
         }
 
+        keyz = "output"
+        if ($scope.keyphrase) {
+            keyz = $scope.keyphrase;
+        }
+
         $http({
             method: "GET",
-            url: "http://" + $scope.ip_addr + ":7421/getPtirs/" + filter
+            url: "http://" + $scope.ip_addr + ":7421/getPtirs/" + filter + "/" + keyz
         }).then(function success(response) {
             $rootScope.ptirs = [];
             for (var i = 0; i < response.data.length; i++) {
@@ -43,25 +48,25 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
 
     };
 
-    $http({
-        method: "GET",
-        url: "http://" + $scope.ip_addr + ":7421/getPtirs/all"
-    }).then(function success(response) {
-        $rootScope.ptirs = [];
-        for (var i = 0; i < response.data.length; i++) {
-            var item = {};
-            item["ptirId"] = response.data[i]["_id"];
-            item["reporter"] = response.data[i]["reporter"];
-            item["assignee"] = response.data[i]["assignee"];
-            item["severity"] = response.data[i]["severity"];
-            item["status"] = response.data[i]["status"];
-            item["description"] = response.data[i]["description"];
+    // $http({
+    //     method: "GET",
+    //     url: "http://" + $scope.ip_addr + ":7421/getPtirs/all"
+    // }).then(function success(response) {
+    //     $rootScope.ptirs = [];
+    //     for (var i = 0; i < response.data.length; i++) {
+    //         var item = {};
+    //         item["ptirId"] = response.data[i]["_id"];
+    //         item["reporter"] = response.data[i]["reporter"];
+    //         item["assignee"] = response.data[i]["assignee"];
+    //         item["severity"] = response.data[i]["severity"];
+    //         item["status"] = response.data[i]["status"];
+    //         item["description"] = response.data[i]["description"];
 
-            $rootScope.ptirs.push(item);
-        }
-    }, function failure(response) {
-        alert("Error getting response from /getptirs " + response.toString() + " " + response);
-    });
+    //         $rootScope.ptirs.push(item);
+    //     }
+    // }, function failure(response) {
+    //     alert("Error getting response from /getptirs " + response.toString() + " " + response);
+    // });
 
     $scope.showModel = function () {
         // alert('called');
