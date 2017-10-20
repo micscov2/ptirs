@@ -2,6 +2,7 @@ from flask import Flask
 from flask import url_for, request, send_from_directory
 from orm_file import Ptir, User, Secret
 from utils import get_response_object
+from send_email import send_email
 import random
 import logging
 import json
@@ -119,7 +120,7 @@ def add_ptir():
                     mimetype="application/json"
                )
         return response
-        
+    send_email(ptir.assignee, ptir.ptir_id, ptir.description) 
     response = app.response_class(
                 response=json.dumps("{'status': 'ok'}"),
                 status=200,
