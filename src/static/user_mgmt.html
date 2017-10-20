@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- scripts -->
+    <script src='gui/js/jquery.min.js'></script>   
+    <script src='gui/js//angular.min.js' /></script>
+    <script src='gui/js/bootstrap.min.js' /></script>
+    <script src='gui/js/pzk_module.js'></script>
+    <script src='gui/js/BasicController.js'></script>
+
+    <!-- csses -->
+    <link rel="stylesheet" href='gui/css/bootstrap.min.css' />
+
+    <!-- Configurations and meta -->
+    <!-- This line adds support for mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body ng-app="angularApp">
+	<h1>PTIRs: A simple task management tool by Pzk</h1><br />
+    <h2>Add a new user</h2>
+    <br />
+    <div ng-controller="BasicController">
+        <form>
+            <table> <!-- class="ui basic table" -->
+                <tr> <td>Name</td> <td> <input type="text" ng-model="user.name" placeholder="Name" required /> </td> </tr>
+                <tr> <td>Password</td> <td> <input type="password" ng-model="user.password" placeholder="Password" required /> </td> </tr>
+                <tr> <td>Email</td> <td> <input type="text" ng-model="user.email" placeholder="Email" required /> </td> </tr>
+                <tr> <td>Role</td> <td> <input type="text" ng-model="user.role" placeholder="Role" /> </td> </tr>
+            </table>
+        </form>
+
+        <div class="actions">
+                <div ng-click="saveUser()"> Save <i class="checkmark icon"></i> </div>
+        </div>
+    </div>
+</body>
+</html>

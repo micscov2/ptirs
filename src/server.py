@@ -91,6 +91,17 @@ def add_ptir():
                )
         return response
 
+    if User.objects(name=body["assignee"]) and User.objects(name=body["reporter"]):
+        pass
+    else:
+        response = app.response_class(
+                    response=json.dumps("{'status': 'error: assignee/reporter is not registered'}"),
+                    status=400,
+                    mimetype="application/json"
+               )
+        return response
+        
+
     ptir = Ptir(
                     ptir_id=random.randint(1, 100000), 
                     description=body["description"],
@@ -120,7 +131,12 @@ def add_ptir():
 @app.route("/addUser", methods=['POST'])
 def add_user():
     body = json.loads(request.data)
-    user = User(body["name"], body["password"])
+    user = User(
+                name=body["name"],
+                password=body["password"],
+                email=body["email"],
+                role=body["role"]
+               )
     user.save()
 
     response = app.response_class(
