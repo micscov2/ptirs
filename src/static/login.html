@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- scripts -->
+    <script src='gui/js/jquery.min.js'></script>   
+    <script src='gui/js//angular.min.js' /></script>
+    <script src='gui/js/bootstrap.min.js' /></script>
+    <script src='gui/js/pzk_module.js'></script>
+    <script src='gui/js/BasicController.js'></script>
+
+    <!-- csses -->
+    <link rel="stylesheet" href='gui/css/bootstrap.min.css' />
+    <link rel="stylesheet" href='gui/css/style.css' />
+
+    <!-- Configurations and meta -->
+    <!-- This line adds support for mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body ng-app="angularApp">
+    <h3>PTIR TaskEngine</h3><br />
+
+    <div class="card" style="width: 34rem;">
+        <div class="card-body">
+            <h4 class="card-title">Enter into site</h4>
+            <form>
+                <table>
+                <tr>
+                    <td>Username:</td><td> <input type="text" placeholder="Username" class="log" size="50" /></td></tr>
+                <tr>
+                    <td>Password:</td><td><input type="password" placeholder="" class="log" size="50" /></td></tr>
+                </table>
+                <button class="btn btn-primary log">Sign In</button> <br />
+                <button class="btn btn-danger log">Forgot Password?</button><br />
+                New user? <button class="btn btn-success log">Sign Up!</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
