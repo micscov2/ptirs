@@ -18,23 +18,37 @@
 </head>
 
 <body ng-app="angularApp">
-    <h3>PTIR TaskEngine</h3><br />
-
-    <div class="card" style="width: 34rem;">
-        <div class="card-body">
-            <h4 class="card-title">Enter into site</h4>
-            <form>
-                <table>
-                <tr>
-                    <td>Username:</td><td> <input type="text" placeholder="Username" class="log" size="50" /></td></tr>
-                <tr>
-                    <td>Password:</td><td><input type="password" placeholder="" class="log" size="50" /></td></tr>
-                </table>
-                <button class="btn btn-primary log">Sign In</button> <br />
-                <button class="btn btn-danger log">Forgot Password?</button><br />
-                New user? <button class="btn btn-success log">Sign Up!</button>
-            </form>
+   
+        <div>
+            <img src="gui/res/title.jpeg" id="imgmain" />
         </div>
-    </div>
+        <div class="pzkside">
+            <img src="gui/res/task.jpeg" height="30px"/>
+            TaskLez<br>
+            TaskEngine
+        </div>
+
+        <div class="card" id="card1" style="width: 34rem;">
+            <div class="card-body">
+                <h4 class="card-title">Enter into site</h4>
+                <form>
+                    
+                    Username<br />
+                    <input type="text" placeholder="" class="log" size="50" /><br /><br />
+                    Password<br />
+                    <input type="password" placeholder="" class="log" size="50" /><br /><br />
+                    
+                    <button class="btn btn-primary log" onclick="window.location='index.html'">Sign In</button> <br />
+                </form>
+            </div>
+            
+        </div>
+        <div class="card" id="card2" style="width: 34rem;">
+            <div class="card-body">
+                    <button class="btn btn-danger log">Forgot Password?</button><br /><hr />
+                    New user? <button class="btn btn-success log">Sign Up!</button>
+            </div>
+        </div>
+
 </body>
 </html>
