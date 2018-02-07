@@ -153,5 +153,5 @@ def home_index(path):
     return send_from_directory("static", path)
 
 
-print("Server listening on port 7421")
+print("Server listening on port 7421/index.html")
 app.run(host="0.0.0.0", port=7421)
