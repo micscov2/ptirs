@@ -17,7 +17,7 @@
 </head>
 
 <body ng-app="angularApp">
-	<h1>PTIRs: A simple task management tool by Pzk</h1><br />
+	<h3>PTIRs: A simple task management tool</h3><br />
 
     <br />
     <div ng-controller="BasicController">
@@ -28,19 +28,21 @@
             <table class="table-striped lst">
                     <tr class="row">
                         <th class="col-sm-1">PtirId</th>
-                        <th class="col-sm-2">Reporter</th>
-                        <th class="col-sm-2">Assignee</th>
+                        <th class="col-sm-1">Reporter</th>
+                        <th class="col-sm-1">Assignee</th>
                         <th class="col-sm-1">Severity</th>
                         <th class="col-sm-2">Status</th>
                         <th class="col-sm-3">Description</th>
+                        <th class="col-sm-2">Created On</th>
                     </tr>
                     <tr ng-repeat="ptir in ptirs" class="row">
                         <td class="col-sm-1"> {{ptir.ptirId}} </td>
-                        <td class="col-sm-2"> {{ptir.reporter}} </td>
-                        <td class="col-sm-2"> {{ptir.assignee}} </td>
+                        <td class="col-sm-1"> {{ptir.reporter}} </td>
+                        <td class="col-sm-1"> {{ptir.assignee}} </td>
                         <td class="col-sm-1"> {{ptir.severity}} </td>
                         <td class="col-sm-2"> {{ptir.status}} </td>
                         <td class="col-sm-3"> {{ptir.description}} </td>
+                        <td class="col-sm-2"> {{ptir.created_on}} </td>
                     </tr>
             </table>
             <div ng-click="showModel()"> Add or Update PTIR </div>

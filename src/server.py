@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import url_for, request, send_from_directory
+from datetime import datetime
 from orm_file import Ptir, User, Secret
 from utils import get_response_object
 from send_email import send_email
@@ -62,7 +63,9 @@ def update_ptir():
                     reporter=body["reporter"],
                     assignee=body["assignee"],
                     status=body["status"],
-                    severity=body["severity"]
+                    severity=body["severity"],
+                    modified_on=str(datetime.now()),
+                    created_on=body.get('created_on')
                )
     try:
         ptir.save()
@@ -109,7 +112,9 @@ def add_ptir():
                     reporter=body["reporter"],
                     assignee=body["assignee"],
                     status=body["status"],
-                    severity=body["severity"]
+                    severity=body["severity"],
+                    created_on=str(datetime.now()),
+                    created_by=body['reporter']
                )
     try:
         ptir.save()

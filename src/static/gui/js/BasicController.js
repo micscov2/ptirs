@@ -2,7 +2,7 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
     $rootScope.ptirs = [];
     $scope.ptirData = {}
     $scope.userData = {}
-    $scope.ip_addr = "localhost"
+    $scope.ip_addr = "172.16.147.129"
 
     $('.modala').hide();
     $('.lst').show();
@@ -55,6 +55,7 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
                 item["severity"] = response.data[i]["severity"];
                 item["status"] = response.data[i]["status"];
                 item["description"] = response.data[i]["description"];
+                item["created_on"] = response.data[i]["created_on"];
 
                 $rootScope.ptirs.push(item);
             }
@@ -78,6 +79,7 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
         $scope.ptirData['severity'] = $scope.ptir.severity
         $scope.ptirData['status'] = $scope.ptir.status
         $scope.ptirData['description'] = $scope.ptir.description
+        $scope.ptirData['created_on'] = $scope.ptir.created_on
 
         $scope.currPtirId = 0
 
@@ -107,6 +109,7 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
                     $scope.ptir.severity = $scope.ptirs[i].severity;
                     $scope.ptir.status = $scope.ptirs[i].status;
                     $scope.ptir.description = $scope.ptirs[i].description;
+                    $scope.ptir.created_on = $scope.ptirs[i].created_on;
                     break;
                 }
             }
@@ -118,6 +121,7 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
         $scope.ptirData['severity'] = $scope.ptir.severity
         $scope.ptirData['status'] = $scope.ptir.status
         $scope.ptirData['description'] = $scope.ptir.description
+        $scope.ptirData['created_on'] = $scope.ptir.created_on
         $http({ 
                 method: "POST",
                 url: "http://" + $scope.ip_addr + ":7421/addPtir",

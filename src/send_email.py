@@ -3,6 +3,8 @@ import getpass
 from orm_file import Secret, User
 
 def send_email(user_name, ptir_id, description):
+    print("Removing email support until thread is there")
+    return
     email = User.objects(name=user_name)[0].email
     #'Subject: {}\n\n{}'.format(SUBJECT, TEXT)
     msg = "Subject: PTIR Created\n\n{} - {}".format(ptir_id, description)
