@@ -1,54 +1,55 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <!-- scripts -->
-    <script src='gui/js/jquery.min.js'></script>   
+    <script src='gui/js/jquery.min.js'></script>
     <script src='gui/js//angular.min.js' /></script>
     <script src='gui/js/bootstrap.min.js' /></script>
     <script src='gui/js/pzk_module.js'></script>
     <script src='gui/js/BasicController.js'></script>
-
     <!-- csses -->
     <link rel="stylesheet" href='gui/css/bootstrap.min.css' />
     <link rel="stylesheet" href='gui/css/style.css' />
-
     <!-- Configurations and meta -->
     <!-- This line adds support for mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 
 <body ng-app="angularApp">
-   
-        <div>
-            <img src="gui/res/title.jpeg" id="imgmain" />
+    <div>
+        <img src="gui/res/title.jpeg" id="imgmain" />
+    </div>
+    <div class="pzkside">
+        <img src="gui/res/task.jpeg" height="30px" /> TaskLez
+        <br> TaskEngine
+    </div>
+    <div class="card" id="card1" style="width: 34rem;">
+        <div class="card-body">
+            <h4 class="card-title">Enter into site</h4>
+            <form>
+                Username
+                <br />
+                <input type="text" placeholder="" class="log" size="50" />
+                <br />
+                <br /> Password
+                <br />
+                <input type="password" placeholder="" class="log" size="50" />
+                <br />
+                <br />
+                <button class="btn btn-primary log" onclick="window.location='index.html'">Sign In</button>
+                <br />
+            </form>
         </div>
-        <div class="pzkside">
-            <img src="gui/res/task.jpeg" height="30px"/>
-            TaskLez<br>
-            TaskEngine
+    </div>
+    <div class="card" id="card2" style="width: 34rem;">
+        <div class="card-body">
+            <button class="btn btn-danger log">Forgot Password?</button>
+            <br />
+            <hr /> New user?
+            <button class="btn btn-success log">Sign Up!</button>
         </div>
-
-        <div class="card" id="card1" style="width: 34rem;">
-            <div class="card-body">
-                <h4 class="card-title">Enter into site</h4>
-                <form>
-                    
-                    Username<br />
-                    <input type="text" placeholder="" class="log" size="50" /><br /><br />
-                    Password<br />
-                    <input type="password" placeholder="" class="log" size="50" /><br /><br />
-                    
-                    <button class="btn btn-primary log" onclick="window.location='index.html'">Sign In</button> <br />
-                </form>
-            </div>
-            
-        </div>
-        <div class="card" id="card2" style="width: 34rem;">
-            <div class="card-body">
-                    <button class="btn btn-danger log">Forgot Password?</button><br /><hr />
-                    New user? <button class="btn btn-success log">Sign Up!</button>
-            </div>
-        </div>
-
+    </div>
 </body>
+
 </html>
