@@ -12,6 +12,7 @@ logging.basicConfig(filename="server.log", level=logging.DEBUG)
 
 logger = logging.getLogger(__name__)
 app = Flask(__name__)
+CTR_VAR = 1
 
 @app.route("/getPtirs/<filter>/<keyphrase>")
 def get_ptirs(filter, keyphrase):
@@ -86,6 +87,8 @@ def update_ptir():
 
 @app.route("/addPtir", methods=['POST'])
 def add_ptir():
+    global CTR_VAR
+    print("Adding PTIR ID: {}".format(CTR_VAR))
     body = json.loads(request.data)
     if body["assignee"] in [None, ""] or body["reporter"] in [None, ""]:
         response = app.response_class(
@@ -107,7 +110,7 @@ def add_ptir():
         
 
     ptir = Ptir(
-                    ptir_id=random.randint(1, 100000), 
+                    ptir_id=CTR_VAR,
                     description=body["description"],
                     reporter=body["reporter"],
                     assignee=body["assignee"],
@@ -118,6 +121,7 @@ def add_ptir():
                )
     try:
         ptir.save()
+        CTR_VAR += 1
     except Exception:
         response = app.response_class(
                     response=json.dumps("{'status': 'error: validation error'}"),
@@ -159,4 +163,5 @@ def home_index(path):
 
 
 print("Server listening on port 7421/index.html")
+CTR_VAR = len(Ptir.objects()) + 1
 app.run(host="0.0.0.0", port=7421)
