@@ -24,95 +24,101 @@
                 <h3>PTIRs: A simple task management tool</h3>
                 <br />
                 <input type="checkbox" ng-model="open" />OPEN
-                <input type="checkbox" ng-model="inProgress" />IN PROGRESS<br />
-                <button ng-click="reload()"> Refresh </button><br />
-            <!--         <input type="checkbox" ng-model="others"/> ALL  -->
-            <div class="lst">
-                <table class="table-striped lst">
-                    <tr class="row">
-                        <th class="col-sm-1">PtirId</th>
-                        <th class="col-sm-1">Reporter</th>
-                        <th class="col-sm-1">Assignee</th>
-                        <th class="col-sm-1">Severity</th>
-                        <th class="col-sm-2">Status</th>
-                        <th class="col-sm-3">Description</th>
-                        <th class="col-sm-2">Created On</th>
-                    </tr>
-                    <tr ng-repeat="ptir in ptirs" class="row">
-                        <td class="col-sm-1"> {{ptir.ptirId}} </td>
-                        <td class="col-sm-1"> {{ptir.reporter}} </td>
-                        <td class="col-sm-1"> {{ptir.assignee}} </td>
-                        <td class="col-sm-1"> {{ptir.severity}} </td>
-                        <td class="col-sm-2"> {{ptir.status}} </td>
-                        <td class="col-sm-3"> {{ptir.description}} </td>
-                        <td class="col-sm-2"> {{ptir.created_on}} </td>
-                    </tr>
-                </table>
-                <button type="button" ng-click="showModel()"> Add or Update PTIR </button>
-                <div>
-                    Keyphrase:
-                    <input type="password" ng-model="keyphrase" />
+                <input type="checkbox" ng-model="inProgress" />IN PROGRESS
+                <br />
+                <button ng-click="reload()"> Refresh </button>
+                <br />
+                <!--         <input type="checkbox" ng-model="others"/> ALL  -->
+                <div class="lst">
+                    <table class="table-striped lst">
+                        <tr class="row">
+                            <th class="col-sm-1">PtirId</th>
+                            <th class="col-sm-1">Reporter</th>
+                            <th class="col-sm-1">Assignee</th>
+                            <th class="col-sm-1">Severity</th>
+                            <th class="col-sm-2">Status</th>
+                            <th class="col-sm-3">Description</th>
+                            <th class="col-sm-2">Created On</th>
+                        </tr>
+                        <tr ng-repeat="ptir in ptirs" class="row">
+                            <td class="col-sm-1"> {{ptir.ptirId}} </td>
+                            <td class="col-sm-1"> {{ptir.reporter}} </td>
+                            <td class="col-sm-1"> {{ptir.assignee}} </td>
+                            <td class="col-sm-1"> {{ptir.severity}} </td>
+                            <td class="col-sm-2"> {{ptir.status}} </td>
+                            <td class="col-sm-3"> {{ptir.description}} </td>
+                            <td class="col-sm-2"> {{ptir.created_on}} </td>
+                        </tr>
+                    </table>
+                    <button type="button" ng-click="showModel()"> Add or Update PTIR </button>
+                    <div>
+                        Keyphrase:
+                        <input type="password" ng-model="keyphrase" />
+                    </div>
+                    <!-- <div ng-click="showModel('change')"> Update PTIR </div> -->
+                    <!-- <input type="text" placeholder="PTIR Id" ng-model="currPtirId" /> -->
                 </div>
-                <!-- <div ng-click="showModel('change')"> Update PTIR </div> -->
-                <!-- <input type="text" placeholder="PTIR Id" ng-model="currPtirId" /> -->
+                <a href="user_mgmt.html">Add New User</a>
             </div>
-            <a href="user_mgmt.html">Add New User</a>
+            <div class="col-sm-1"></div>
         </div>
-        <div class="col-sm-1"></div>
-    </div>
-    <div class="modala">
-        <div class="container">
-        <div class="row">
-        <div class="col-sm-1"</div>
-        <div class="col-sm-10">
-        <!-- <i class="close icon"></i> -->
-        <!-- <div class="header"> </div> -->
-        <!-- <div> -->
-        <form>
-            <table>
-                <!-- class="ui basic table" -->
-                <tr>
-                    <td>Reporter</td>
-                    <td>
-                        <input type="text" ng-model="ptir.reporter" placeholder="Reporter" required /> </td>
-                </tr>
-                <tr>
-                    <td>Assignee</td>
-                    <td>
-                        <input type="text" ng-model="ptir.assignee" placeholder="Assignee" required /> </td>
-                </tr>
-                <tr>
-                    <td>Severity</td>
-                    <td>
-                        <input type="text" ng-model="ptir.severity" placeholder="Severity" required /> </td>
-                </tr>
-                <tr>
-                    <td>Status</td>
-                    <td>
-                        <input type="text" ng-model="ptir.status" placeholder="Status" /> </td>
-                </tr>
-                <tr>
-                    <td>Description</td>
-                    <td>
-                        <input type="text" ng-model="ptir.description" placeholder="Description" required /> </td>
-                </tr>
-            </table>
-        </form>
-        <!-- </div> -->
-        <div class="actions">
-            <button ng-click="save()">Save</button><br /><br />
-            <input type="text" placeholder="PTIR ID" ng-model="currPtirId" />
-            <button ng-click="save('change')">LoadData</button><br /><br />
-            <button ng-click="update()">Update</button>
-            <!-- <div>
+        <div class="modala">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-1" </div>
+                        <div class="col-sm-10">
+                            <!-- <i class="close icon"></i> -->
+                            <!-- <div class="header"> </div> -->
+                            <!-- <div> -->
+                            <form>
+                                <table>
+                                    <!-- class="ui basic table" -->
+                                    <tr>
+                                        <td>Reporter</td>
+                                        <td>
+                                            <input type="text" ng-model="ptir.reporter" placeholder="Reporter" required /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Assignee</td>
+                                        <td>
+                                            <input type="text" ng-model="ptir.assignee" placeholder="Assignee" required /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Severity</td>
+                                        <td>
+                                            <input type="text" ng-model="ptir.severity" placeholder="Severity" required /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Status</td>
+                                        <td>
+                                            <input type="text" ng-model="ptir.status" placeholder="Status" /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Description</td>
+                                        <td>
+                                            <input type="text" ng-model="ptir.description" placeholder="Description" required /> </td>
+                                    </tr>
+                                </table>
+                            </form>
+                            <!-- </div> -->
+                            <div class="actions">
+                                <button ng-click="save()">Save</button>
+                                <br />
+                                <br />
+                                <input type="text" placeholder="PTIR ID" ng-model="currPtirId" />
+                                <button ng-click="save('change')">LoadData</button>
+                                <br />
+                                <br />
+                                <button ng-click="update()">Update</button>
+                                <!-- <div>
                     Keyphrase: <input type="text" ng-model="keyphrasee" /> 
                 </div> -->
-        </div>
-        </div>
-        <div class="col-sm-1"></div>
-        </div>
-    </div>
-    </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                </div>
+            </div>
 </body>
 
 </html>
