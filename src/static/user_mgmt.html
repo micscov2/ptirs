@@ -17,46 +17,46 @@
 
 <body ng-app="angularApp">
     <div class="container">
-    <div class="row">
-    <div class="col-sm-1"></div>
-    <div class="sol-sm-10">
-    <h3>PTIRs: A simple task management tool</h3>
-    <br />
-    <h2>Add a new user</h2>
-    <br />
-    <div ng-controller="BasicController">
-        <form>
-            <table>
-                <!-- class="ui basic table" -->
-                <tr>
-                    <td>Name</td>
-                    <td>
-                        <input type="text" ng-model="user.name" placeholder="Name" required /> </td>
-                </tr>
-                <tr>
-                    <td>Password</td>
-                    <td>
-                        <input type="password" ng-model="user.password" placeholder="Password" required /> </td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td>
-                        <input type="text" ng-model="user.email" placeholder="Email" required /> </td>
-                </tr>
-                <tr>
-                    <td>Role</td>
-                    <td>
-                        <input type="text" ng-model="user.role" placeholder="Role" /> </td>
-                </tr>
-            </table>
-        </form>
-        <div class="actions">
-            <div ng-click="saveUser()"> Save <i class="checkmark icon"></i> </div>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="sol-sm-10">
+                <h3>PTIRs: A simple task management tool</h3>
+                <br />
+                <h2>Add a new user</h2>
+                <br />
+                <div ng-controller="BasicController">
+                    <form>
+                        <table>
+                            <!-- class="ui basic table" -->
+                            <tr>
+                                <td>Name</td>
+                                <td>
+                                    <input type="text" ng-model="user.name" placeholder="Name" required /> </td>
+                            </tr>
+                            <tr>
+                                <td>Password</td>
+                                <td>
+                                    <input type="password" ng-model="user.password" placeholder="Password" required /> </td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>
+                                    <input type="text" ng-model="user.email" placeholder="Email" required /> </td>
+                            </tr>
+                            <tr>
+                                <td>Role</td>
+                                <td>
+                                    <input type="text" ng-model="user.role" placeholder="Role" /> </td>
+                            </tr>
+                        </table>
+                    </form>
+                    <div class="actions">
+                        <div ng-click="saveUser()"> Save <i class="checkmark icon"></i> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
         </div>
-    </div>
-    </div>
-    <div class="col-sm-1"></div>
-    </div>
     </div>
 </body>
 
