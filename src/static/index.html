@@ -17,12 +17,16 @@
 </head>
 
 <body ng-app="angularApp">
-	<h3>PTIRs: A simple task management tool</h3><br />
 
     <br />
-    <div ng-controller="BasicController">
+    <div ng-controller="BasicController" class="container">
+        <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+	<h3>PTIRs: A simple task management tool</h3><br />
         <input type="checkbox" ng-model="open" />OPEN 
         <input type="checkbox" ng-model="inProgress" />IN PROGRESS  
+        <button type="button" ng-click="reload()"> Refresh </div>
 <!--         <input type="checkbox" ng-model="others"/> ALL  -->
         <div class="lst">
             <table class="table-striped lst">
@@ -45,18 +49,16 @@
                         <td class="col-sm-2"> {{ptir.created_on}} </td>
                     </tr>
             </table>
-            <div ng-click="showModel()"> Add or Update PTIR </div>
-            <div ng-click="reload()"> Refresh </div>
+            <button type="button" ng-click="showModel()"> Add or Update PTIR </button>
             <div>
                     Keyphrase: <input type="password" ng-model="keyphrase" /> 
                 </div>
             <!-- <div ng-click="showModel('change')"> Update PTIR </div> -->
             <!-- <input type="text" placeholder="PTIR Id" ng-model="currPtirId" /> -->
         </div>
-        <div>
-            <hr />
-                <a href="user_mgmt.html">Add New User</a>
-            <hr />
+        </div>
+        <a href="user_mgmt.html">Add New User</a>
+        <div class="col-sm-1"></div>
         </div>
         <div class="modala">
             <!-- <i class="close icon"></i> -->
