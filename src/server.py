@@ -58,6 +58,14 @@ def update_ptir():
                )
         return response
 
+    if len(Ptir.objects(ptir_id=int(body["_id"]))) != 1:
+        response = app.response_class(
+                    response=json.dumps("{'status': 'error: PTIR with id: " + body["_id"] + " not found'}"),
+                    status=400,
+                    mimetype="application/json"
+            )
+        return response
+
     ptir = Ptir(
                     ptir_id=int(body["_id"]),
                     description=body["description"],
