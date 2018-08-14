@@ -1,18 +1,24 @@
-from flask import Flask
-from flask import url_for, request, send_from_directory
-from datetime import datetime
-from orm_file import Ptir, User, Secret
-from utils import get_response_object
-from send_email import send_email
 import random
 import logging
 import json
+import threading
+
+from flask import Flask
+from datetime import datetime
+from flask import url_for, request, send_from_directory
+
+from orm_file import Ptir, User, Secret
+from utils import get_response_object
+from send_email import send_email
 
 logging.basicConfig(filename="server.log", level=logging.DEBUG)
 
 logger = logging.getLogger(__name__)
 app = Flask(__name__)
 CTR_VAR = 1
+
+def send_email_thread_func(assignee, ptir_id, description):
+    send_email(assignee, ptir_id, description) 
 
 @app.route("/getPtirs/<filter>/<keyphrase>")
 def get_ptirs(filter, keyphrase):
@@ -137,7 +143,8 @@ def add_ptir():
                     mimetype="application/json"
                )
         return response
-    send_email(ptir.assignee, ptir.ptir_id, ptir.description) 
+    threading.Thread(target=send_email_thread_func, args=(ptir.assignee, ptir.ptir_id, ptir.description)).start()
+    print "Returning response now"
     response = app.response_class(
                 response=json.dumps("{'status': 'ok'}"),
                 status=200,
