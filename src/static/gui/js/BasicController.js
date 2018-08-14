@@ -1,8 +1,13 @@
 angularApp.controller("BasicController", function BasicController($scope, $http, $rootScope) {
     $rootScope.ptirs = [];
+    $rootScope.totalPtirs = [];
     $scope.ptirData = {}
     $scope.userData = {}
     $scope.ip_addr = "172.16.147.129"
+    $scope.currPageNum = 0;
+    const pageSize = 5;
+    offSet = 0;
+    totalPages = -1;
 
     $('.modala').hide();
     $('.lst').show();
@@ -24,7 +29,22 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
         });
     };
 
-    $scope.reload = function() {
+    $scope.pageChange = function(num) {
+        console.log(num);
+        if (num == "0") {
+            if ($scope.currPageNum != 0) {
+                $scope.currPageNum -= 1;
+                $scope.reload('1');
+            }
+        } else if (num == "1") {
+            if ($scope.currPageNum < totalPages) {
+                $scope.currPageNum += 1;
+                $scope.reload('1');
+            }
+        }
+    }
+
+    $scope.reload = function(code) {
         // debug;
         filter = "";
         if ($scope.open) {
@@ -33,7 +53,7 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
             filter = 'IN PROGRESS'
         }
 
-        if (! filter) {
+        if (!filter) {
             filter = 'all';
         }
 
@@ -42,31 +62,57 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
             keyz = $scope.keyphrase;
         }
 
-        $http({
-            method: "GET",
-            url: "http://" + $scope.ip_addr + ":7421/getPtirs/" + filter + "/" + keyz
-        }).then(function success(response) {
+        if (code == '0') {
+            $http({
+                method: "GET",
+                url: "http://" + $scope.ip_addr + ":7421/getPtirs/" + filter + "/" + keyz
+            }).then(function success(response) {
+                $rootScope.ptirs = [];
+                $rootScope.totalPtirs = [];
+                totalPages = response.data.length / pageSize;
+
+                for (var i = 0; i < response.data.length; i++) {
+                    var item = {};
+                    item["ptirId"] = response.data[i]["_id"];
+                    item["reporter"] = response.data[i]["reporter"];
+                    item["assignee"] = response.data[i]["assignee"];
+                    item["severity"] = response.data[i]["severity"];
+                    item["status"] = response.data[i]["status"];
+                    item["description"] = response.data[i]["description"];
+                    item["created_on"] = response.data[i]["created_on"];
+
+                    $rootScope.totalPtirs.push(item);
+
+                    if (i < pageSize) {
+                        $rootScope.ptirs.push(item);
+                    }
+
+                    $scope.currPageNum = 0;
+                }
+            }, function failure(response) {
+                alert("Error getting response from /getptirs " + response.toString() + " " + response);
+            });
+        } else {
             $rootScope.ptirs = [];
-            for (var i = 0; i < response.data.length; i++) {
+            for (var i = $scope.currPageNum * pageSize; i < ($scope.currPageNum + 1) * pageSize; i++) {
                 var item = {};
-                item["ptirId"] = response.data[i]["_id"];
-                item["reporter"] = response.data[i]["reporter"];
-                item["assignee"] = response.data[i]["assignee"];
-                item["severity"] = response.data[i]["severity"];
-                item["status"] = response.data[i]["status"];
-                item["description"] = response.data[i]["description"];
-                item["created_on"] = response.data[i]["created_on"];
+
+                item["ptirId"] = $rootScope.totalPtirs[i]["ptirId"];
+                item["reporter"] = $rootScope.totalPtirs[i]["reporter"];
+                item["assignee"] = $rootScope.totalPtirs[i]["assignee"];
+                item["severity"] = $rootScope.totalPtirs[i]["severity"];
+                item["status"] = $rootScope.totalPtirs[i]["status"];
+                item["description"] = $rootScope.totalPtirs[i]["description"];
+                item["created_on"] = $rootScope.totalPtirs[i]["created_on"];
 
                 $rootScope.ptirs.push(item);
             }
-        }, function failure(response) {
-            alert("Error getting response from /getptirs " + response.toString() + " " + response);
-        });
+        }
 
 
     };
 
-    $scope.showModel = function () {
+    $scope.showModel = function() {
         // alert('called');
         $('.modala').show();
         $('.lst').hide();
@@ -83,10 +129,10 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
 
         $scope.currPtirId = 0
 
-        $http({ 
-                method: "POST",
-                url: "http://" + $scope.ip_addr + ":7421/updatePtir",
-                data: JSON.stringify($scope.ptirData)
+        $http({
+            method: "POST",
+            url: "http://" + $scope.ip_addr + ":7421/updatePtir",
+            data: JSON.stringify($scope.ptirData)
         }).then(function success(response) {
             // alert("success " + response.toString());
             $rootScope.ptirs.push($scope.ptirData)
@@ -114,18 +160,18 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
                 }
             }
             return;
-        } 
-  
+        }
+
         $scope.ptirData['reporter'] = $scope.ptir.reporter
         $scope.ptirData['assignee'] = $scope.ptir.assignee
         $scope.ptirData['severity'] = $scope.ptir.severity
         $scope.ptirData['status'] = $scope.ptir.status
         $scope.ptirData['description'] = $scope.ptir.description
         $scope.ptirData['created_on'] = $scope.ptir.created_on
-        $http({ 
-                method: "POST",
-                url: "http://" + $scope.ip_addr + ":7421/addPtir",
-                data: JSON.stringify($scope.ptirData)
+        $http({
+            method: "POST",
+            url: "http://" + $scope.ip_addr + ":7421/addPtir",
+            data: JSON.stringify($scope.ptirData)
         }).then(function success(response) {
             // alert("success " + response.toString());
             $rootScope.ptirs.push($scope.ptirData)
@@ -139,22 +185,22 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
 
 
 
- // $http({
-    //     method: "GET",
-    //     url: "http://" + $scope.ip_addr + ":7421/getPtirs/all"
-    // }).then(function success(response) {
-    //     $rootScope.ptirs = [];
-    //     for (var i = 0; i < response.data.length; i++) {
-    //         var item = {};
-    //         item["ptirId"] = response.data[i]["_id"];
-    //         item["reporter"] = response.data[i]["reporter"];
-    //         item["assignee"] = response.data[i]["assignee"];
-    //         item["severity"] = response.data[i]["severity"];
-    //         item["status"] = response.data[i]["status"];
-    //         item["description"] = response.data[i]["description"];
+// $http({
+//     method: "GET",
+//     url: "http://" + $scope.ip_addr + ":7421/getPtirs/all"
+// }).then(function success(response) {
+//     $rootScope.ptirs = [];
+//     for (var i = 0; i < response.data.length; i++) {
+//         var item = {};
+//         item["ptirId"] = response.data[i]["_id"];
+//         item["reporter"] = response.data[i]["reporter"];
+//         item["assignee"] = response.data[i]["assignee"];
+//         item["severity"] = response.data[i]["severity"];
+//         item["status"] = response.data[i]["status"];
+//         item["description"] = response.data[i]["description"];
 
-    //         $rootScope.ptirs.push(item);
-    //     }
-    // }, function failure(response) {
-    //     alert("Error getting response from /getptirs " + response.toString() + " " + response);
-    // });
+//         $rootScope.ptirs.push(item);
+//     }
+// }, function failure(response) {
+//     alert("Error getting response from /getptirs " + response.toString() + " " + response);
+// });
