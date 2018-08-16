@@ -29,11 +29,15 @@ def get_ptirs(filter, keyphrase):
                     status=200,
                     mimetype='application/json'
                )            
-    if filter in ['OPEN', 'IN PROGRESS']:
+    if filter == 'OPEN' or filter == 'IN PROGRESS':
         data = get_response_object(Ptir.objects(status=filter))
+    elif filter == 'OPEN,IN PROGRESS':
+        data1 = get_response_object(Ptir.objects(status='OPEN'))
+        data2 = get_response_object(Ptir.objects(status='IN PROGRESS'))
+        data = data1 + data2
     else:
         data = get_response_object(Ptir.objects)
-
+        
     response = app.response_class(
                     response=json.dumps(data),
                     status=200,

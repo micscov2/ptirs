@@ -47,10 +47,12 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
     $scope.reload = function(code) {
         // debug;
         filter = "";
-        if ($scope.open) {
+        if ($scope.open && !$scope.inProgress) {
             filter = 'OPEN'
-        } else if ($scope.inProgress) {
+        } else if ($scope.inProgress && !$scope.open) {
             filter = 'IN PROGRESS'
+        } else if ($scope.inProgress && $scope.open) {
+            filter = 'OPEN,IN PROGRESS'
         }
 
         if (!filter) {
@@ -147,15 +149,15 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
         if (change) {
             currPtirId = $scope.currPtirId;
             // alert(currPtirId);
-            for (var i = 0; i < $scope.ptirs.length; i++) {
-                if (currPtirId == $scope.ptirs[i].ptirId) {
+            for (var i = 0; i < $scope.totalPtirs.length; i++) {
+                if (currPtirId == $scope.totalPtirs[i].ptirId.toString()) {
 
-                    $scope.ptir.reporter = $scope.ptirs[i].reporter;
-                    $scope.ptir.assignee = $scope.ptirs[i].assignee;
-                    $scope.ptir.severity = $scope.ptirs[i].severity;
-                    $scope.ptir.status = $scope.ptirs[i].status;
-                    $scope.ptir.description = $scope.ptirs[i].description;
-                    $scope.ptir.created_on = $scope.ptirs[i].created_on;
+                    $scope.ptir.reporter = $scope.totalPtirs[i].reporter;
+                    $scope.ptir.assignee = $scope.totalPtirs[i].assignee;
+                    $scope.ptir.severity = $scope.totalPtirs[i].severity;
+                    $scope.ptir.status = $scope.totalPtirs[i].status;
+                    $scope.ptir.description = $scope.totalPtirs[i].description;
+                    $scope.ptir.created_on = $scope.totalPtirs[i].created_on;
                     break;
                 }
             }
