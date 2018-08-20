@@ -20,7 +20,7 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
 
         $http({
             method: "POST",
-            url: "http://" + $scope.ip_addr + ":7421/addUser",
+            url: "https://" + $scope.ip_addr + ":7421/addUser",
             data: JSON.stringify($scope.userData)
         }).then(function success(response) {
             alert("Success!")
@@ -67,7 +67,7 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
         if (code == '0') {
             $http({
                 method: "GET",
-                url: "http://" + $scope.ip_addr + ":7421/getPtirs/" + filter + "/" + keyz
+                url: "https://" + $scope.ip_addr + ":7421/getPtirs/" + filter + "/" + keyz
             }).then(function success(response) {
                 $rootScope.ptirs = [];
                 $rootScope.totalPtirs = [];
@@ -133,7 +133,7 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
 
         $http({
             method: "POST",
-            url: "http://" + $scope.ip_addr + ":7421/updatePtir",
+            url: "https://" + $scope.ip_addr + ":7421/updatePtir",
             data: JSON.stringify($scope.ptirData)
         }).then(function success(response) {
             // alert("success " + response.toString());
@@ -172,7 +172,7 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
         $scope.ptirData['created_on'] = $scope.ptir.created_on
         $http({
             method: "POST",
-            url: "http://" + $scope.ip_addr + ":7421/addPtir",
+            url: "https://" + $scope.ip_addr + ":7421/addPtir",
             data: JSON.stringify($scope.ptirData)
         }).then(function success(response) {
             // alert("success " + response.toString());

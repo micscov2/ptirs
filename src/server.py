@@ -183,4 +183,4 @@ def home_index(path):
 
 print("Server listening on port 7421/index.html")
 CTR_VAR = len(Ptir.objects()) + 1
-app.run(host="0.0.0.0", port=7421)
+app.run(host="0.0.0.0", port=7421, ssl_context=('cert.pem', 'key.pem'))
