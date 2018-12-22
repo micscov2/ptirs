@@ -182,5 +182,9 @@ def home_index(path):
 
 
 print("Server listening on port 7421/index.html")
-CTR_VAR = len(Ptir.objects()) + 1
+ctr_2 = 0
+for item in Ptir.objects():
+    ctr_2 = max(ctr_2, item.id)
+CTR_VAR = ctr_2 + 1
+print("PTIR number starting from : {}".format(CTR_VAR))
 app.run(host="0.0.0.0", port=7421, ssl_context=('cert.pem', 'key.pem'))

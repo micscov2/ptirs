@@ -18,3 +18,6 @@ sudo apt-get install python-pip
 
 # Install python dependencies
 sudo pip install -r requirements.txt 
+
+# Check everything in place by running tests using command
+python -m nose tests/
