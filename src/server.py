@@ -8,10 +8,10 @@ from datetime import datetime
 from flask import url_for, request, send_from_directory
 
 from orm_file import Ptir, User, Secret
-from utils import get_response_object
+from utils import get_response_object, check_all_files_present
 from send_email import send_email
 
-logging.basicConfig(filename="server.log", level=logging.DEBUG)
+logging.basicConfig(filename="../logs/server.log", level=logging.DEBUG)
 
 logger = logging.getLogger(__name__)
 app = Flask(__name__)
@@ -182,9 +182,13 @@ def home_index(path):
 
 
 print("Server listening on port 7421/index.html")
-ctr_2 = 0
+ctr_2 = 0 # Global var, very bad idea need to be replaced
 for item in Ptir.objects():
     ctr_2 = max(ctr_2, item.id)
 CTR_VAR = ctr_2 + 1
 print("PTIR number starting from : {}".format(CTR_VAR))
-app.run(host="0.0.0.0", port=7421, ssl_context=('cert.pem', 'key.pem'))
+
+if check_all_files_present(["cert.pem", "key.pem"]):
+    app.run(host="0.0.0.0", port=7421, ssl_context=('cert.pem', 'key.pem'))
+else:
+    app.run(host="0.0.0.0", port=7421)

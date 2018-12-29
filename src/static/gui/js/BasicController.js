@@ -3,7 +3,7 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
     $rootScope.totalPtirs = [];
     $scope.ptirData = {}
     $scope.userData = {}
-    $scope.ip_addr = "172.16.147.129"
+    $scope.proto_ip_addr = "http://127.0.0.1"
     $scope.currPageNum = 0;
     const pageSize = 5;
     offSet = 0;
@@ -20,7 +20,7 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
 
         $http({
             method: "POST",
-            url: "https://" + $scope.ip_addr + ":7421/addUser",
+            url: $scope.proto_ip_addr + ":7421/addUser",
             data: JSON.stringify($scope.userData)
         }).then(function success(response) {
             alert("Success!")
@@ -67,7 +67,7 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
         if (code == '0') {
             $http({
                 method: "GET",
-                url: "https://" + $scope.ip_addr + ":7421/getPtirs/" + filter + "/" + keyz
+                url: $scope.proto_ip_addr + ":7421/getPtirs/" + filter + "/" + keyz
             }).then(function success(response) {
                 $rootScope.ptirs = [];
                 $rootScope.totalPtirs = [];
@@ -133,7 +133,7 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
 
         $http({
             method: "POST",
-            url: "https://" + $scope.ip_addr + ":7421/updatePtir",
+            url: $scope.proto_ip_addr + ":7421/updatePtir",
             data: JSON.stringify($scope.ptirData)
         }).then(function success(response) {
             // alert("success " + response.toString());
@@ -172,7 +172,7 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
         $scope.ptirData['created_on'] = $scope.ptir.created_on
         $http({
             method: "POST",
-            url: "https://" + $scope.ip_addr + ":7421/addPtir",
+            url: $scope.proto_ip_addr + ":7421/addPtir",
             data: JSON.stringify($scope.ptirData)
         }).then(function success(response) {
             // alert("success " + response.toString());
@@ -189,7 +189,7 @@ angularApp.controller("BasicController", function BasicController($scope, $http,
 
 // $http({
 //     method: "GET",
-//     url: "http://" + $scope.ip_addr + ":7421/getPtirs/all"
+//     url: "http://" + $scope.proto_ip_addr + ":7421/getPtirs/all"
 // }).then(function success(response) {
 //     $rootScope.ptirs = [];
 //     for (var i = 0; i < response.data.length; i++) {
