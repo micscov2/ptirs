@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- scripts -->
+    <script src='gui/js/jquery.min.js'></script>
+    <script src='gui/js//angular.min.js' /></script>
+    <script src='gui/js/bootstrap.min.js' /></script>
+    <script src='gui/js/pzk_module.js'></script>
+    <script src='gui/js/BasicController.js'></script>
+    <!-- csses -->
+    <link rel="stylesheet" href='gui/css/bootstrap.min.css' />
+    <link rel="stylesheet" href='gui/css/ptir_style.css' />
+    <!-- Configurations and meta -->
+    <!-- This line adds support for mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body ng-app="angularApp">
+    <br />
+    <div ng-controller="BasicController" class="full-container">
+        <div class="row" style="padding-left: 10px; padding-right: 10px; ">
+            <div class="col-sm-11">
+            <p style="font-weight: bold;">This is top menu * this is top menu * this is top menu * this is top menu </p>
+            </div>
+            <div class="col-sm-1">
+                username
+            </div>
+        </div>
+        <div class="row" style="padding-left: 10px; padding-right: 10px; ">
+            <div class="col-sm-8">
+                <h4>This is supposed to be title. This is supposed to be title.This is supposed to be title.This is supposed to be title.This is supposed to be title.</h4>
+                <p> <h6>Description</h6>
+                This font should occupy line width equal to 9 sms. This font should occupy line width equal to 9 sms. This font should occupy line width equal to 9 sms. This font should occupy line width equal to 9 sms. This font should occupy line width equal to 9 sms. This font should occupy line width equal to 9 sms. This font should occupy line width equal to 9 sms.
+                </p>
+                <hr />
+                <p><h6>Information</h6>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <table>
+                                <tr><td class="width150">Status</td><td class="width150">Open</td></tr>
+                                <tr><td class="width150">Severity</td><td class="width150">Open</td></tr>
+                                <tr><td class="width150">Priority</td><td class="width150">Open</td></tr>
+                            </table>
+                        </div>
+                        <div class="col-sm-6">
+                            <table>
+                                <tr><td class="width150">Resolution</td><td class="width150">Open</td></tr>
+                                <tr><td class="width150">Team</td><td class="width150">Open</td></tr>
+                                <tr><td class="width150">Board</td><td class="width150">Open</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </p>
+                <p><h6> Comments </h6>
+                    * This is comment a sample comment <br />
+                    * This is comment a sample comment <br />
+                    * This is comment a sample comment <br />
+                    * This is comment a sample comment <br />
+                </p>
+            </div>
+
+            <div class="col-sm-4">
+                <p>
+                This font should occopy line width equal to 3 sms. This font should occopy line width equal to 3 sms. This font should occopy line width equal to 3 sms. This font should occopy line width equal to 3 sms. This font should occopy line width equal to 3 sms. This font should occopy line width equal to 3 sms.
+                </p>
+                <p>
+                    this is watchers list
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
