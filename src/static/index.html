@@ -26,9 +26,8 @@
                 <input type="checkbox" ng-model="open" />OPEN
                 <input type="checkbox" ng-model="inProgress" />IN PROGRESS
                 <br />
-                <button ng-click="reload('0')"> Refresh </button>
-                <br />
-                <!--         <input type="checkbox" ng-model="others"/> ALL  -->
+                <button ng-click="reload('0')"> Refresh </button> <br />
+
                 <div class="lst">
                     <table class="table-striped lst">
                         <tr class="row">
@@ -62,10 +61,8 @@
                         Keyphrase:
                         <input type="password" ng-model="keyphrase" />
                     </div>
-                    <!-- <div ng-click="showModel('change')"> Update PTIR </div> -->
-                    <!-- <input type="text" placeholder="PTIR Id" ng-model="currPtirId" /> -->
                 </div>
-                <a href="user_mgmt.html">Add New User</a>
+                <button onclick="window.location='user_mgmt.html'">Add New User</a>
             </div>
             <div class="col-sm-1"></div>
         </div>
